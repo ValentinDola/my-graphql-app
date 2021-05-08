@@ -1,20 +1,13 @@
 import React from "react";
 
-//Apollo client imports
-import { useQuery, gql } from "@apollo/client";
+import {getAllBooks} from "../queries/queries";
 
-//Making queries
-const getAllTheBooks = gql`
-  {
-    books {
-      name
-      genre
-    }
-  }
-`;
+//Apollo client imports
+import { useQuery } from "@apollo/client";
+
 
 const BookList = () => {
-  const { data, error, loading } = useQuery(getAllTheBooks);
+  const { data, error, loading } = useQuery(getAllBooks);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -24,7 +17,7 @@ const BookList = () => {
 
   const bookList = () => {
     return data.books.map((book) => (
-      <li>
+      <li key={book.id} >
         the book name {book.name} and the genre {book.genre}
       </li>
     ));
@@ -32,7 +25,7 @@ const BookList = () => {
 
   return (
     <div>
-      <ul>{bookList()}</ul>
+      <ul id={'book-list'}>{bookList()}</ul>
     </div>
   );
 };

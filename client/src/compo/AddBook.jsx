@@ -1,17 +1,11 @@
 import React from "react";
 
-//Apollo client imports
-import { useQuery, gql } from "@apollo/client";
+import {getAllAuthors} from "../queries/queries";
 
-const getAllAuthors = gql`
-  {
-    authors {
-      name
-      age
-      id
-    }
-  }
-`;
+//Apollo client imports
+import { useQuery } from "@apollo/client";
+
+
 
 const AddBook = () => {
   const { data, error, loading } = useQuery(getAllAuthors);
@@ -26,7 +20,7 @@ const AddBook = () => {
     return loading ? (
       <option>Loading Authors </option>
     ) : (
-      data.authors.map((author) => <option>{author.name}</option>)
+      data.authors.map((author) => <option key={author.id} >{author.name}</option>)
     );
   };
 
