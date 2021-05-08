@@ -2,7 +2,6 @@ import React from 'react';
 
 //Apollo client imports
 import {useQuery, gql} from '@apollo/client';
-import { graphql } from "@apollo/client/react/hoc";
 
 
 //Making queries
@@ -15,7 +14,7 @@ const getAllTheBooks = gql`
     }
 `;
 
-const BookList = (props) => {
+const BookList = () => {
 
     const {data, error, loading} = useQuery(getAllTheBooks);
 
@@ -25,16 +24,20 @@ const BookList = (props) => {
         console.log(data)
     }
 
-    // console.log(props)
+    const bookList = () => {
+        return (
+            data.books.map(book => (
+                    <li>
+                        the book name {book.name} and the genre {book.genre}
+                    </li>
+                ) )
+        )
+    }
 
     return (
         <div>
             <ul>
-                {data.books.map(book => (
-                    <li>
-                        {book.name}
-                    </li>
-                ) )}
+                {bookList()}
             </ul>
         </div>
     )
