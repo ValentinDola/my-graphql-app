@@ -11,6 +11,8 @@ const getAllBooks = gql`
     }
 `;
 
+
+// Get a single book
 const getSingleBook = gql`
     query ($id : ID){
         book(id: $id) {
@@ -31,7 +33,7 @@ const getSingleBook = gql`
     }
 `;
 
-//all authors
+// Get all authors
 const getAllAuthors = gql`
     {
         authors {
@@ -42,6 +44,8 @@ const getAllAuthors = gql`
     }
 `;
 
+
+// Add a book mutation
 const addBookMutation = gql`
     mutation($name : String!, $genre : String!, $authorId : ID!) {
         addBook(name : $name, genre : $genre, authorId : $authorId){

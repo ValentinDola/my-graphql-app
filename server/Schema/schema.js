@@ -79,9 +79,12 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+// Mutation
 const Mutation = new GraphQLObjectType({
     name : 'Mutation',
     fields : {
+
+        // Add author mutation
         addAuthor : {
             type : AuthorType,
             args : {
@@ -98,6 +101,7 @@ const Mutation = new GraphQLObjectType({
             }
         },
 
+        // Add book mutation
         addBook : {
             type : BookType,
             args : {

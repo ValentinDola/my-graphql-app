@@ -46,7 +46,11 @@ const AddBook = () => {
     e.preventDefault();
     addBook()
       .then((r) =>
-            console.log(r),
+          setFormState({
+            name: '',
+            genre: '',
+            authorId: null
+          })
 
       )
       .catch((err) => console.error(err));

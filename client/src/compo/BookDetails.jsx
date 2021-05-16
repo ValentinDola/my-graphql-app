@@ -10,15 +10,15 @@ const BookDetails = ({bookId}) => {
       id: bookId,
     },
   });
-  if (loading) return null
+  if (loading) console.log('loading')
   if (error) return `Error ${error}`;
   if (data) console.log(data);
 
   const displayBookDetails = () => {
+      const book = data && data.book;
 
-      const {book} = data.book;
+    if (book) {
 
-    if (data) {
       return (
 
         <div>
@@ -27,7 +27,7 @@ const BookDetails = ({bookId}) => {
           <p>{book.author.name}</p>
           <p>All the books by this author</p>
           <ul className={"other-books"}>
-            {book.author.book.map((bk) => (
+            {book.author.book.map(bk => (
               <li key={bk.id}>{bk.name}</li>
             ))}
           </ul>
@@ -42,7 +42,10 @@ const BookDetails = ({bookId}) => {
     }
   };
 
-  return <div id={'book-details'} >{displayBookDetails()}</div>;
+  return( <div id={'book-details'} >
+      {displayBookDetails()}
+  </div>);
 };
 
 export default BookDetails;
+
