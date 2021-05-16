@@ -28,7 +28,7 @@ const BookList = () => {
   return (
     <div>
       <ul id={"book-list"}>{bookList()}</ul>
-      <BookDetails bookId={id} />
+      {/*<BookDetails bookId={id} />*/}
     </div>
   );
 };
