@@ -28,7 +28,6 @@ const App = () => {
 
                 <BookList/>
                 <AddBook/>
-                {/*<BookDetails/>*/}
             </div>
         </ApolloProvider>
 
