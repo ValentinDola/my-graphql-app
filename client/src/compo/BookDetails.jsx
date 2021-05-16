@@ -4,10 +4,10 @@ import { useQuery } from "@apollo/client";
 
 import { getSingleBook } from "../queries/queries";
 
-const BookDetails = (props) => {
+const BookDetails = ({bookId}) => {
   const { data, error, loading } = useQuery(getSingleBook, {
     variables: {
-      id: props.bookId,
+      id: bookId,
     },
   });
   if (loading) return null
@@ -16,18 +16,18 @@ const BookDetails = (props) => {
 
   const displayBookDetails = () => {
 
-      // const {book} = data.books;
+      const {book} = data.book;
 
     if (data) {
       return (
 
         <div>
-          <h2>{data.book.name}</h2>
-          <p>{data.book.genre}</p>
-          <p>{data.book.author.name}</p>
+          <h2>{book.name}</h2>
+          <p>{book.genre}</p>
+          <p>{book.author.name}</p>
           <p>All the books by this author</p>
           <ul className={"other-books"}>
-            {data.book.author.book.map((bk) => (
+            {book.author.book.map((bk) => (
               <li key={bk.id}>{bk.name}</li>
             ))}
           </ul>
