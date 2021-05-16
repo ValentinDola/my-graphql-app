@@ -45,7 +45,10 @@ const AddBook = () => {
   const onSubmitForm = (e) => {
     e.preventDefault();
     addBook()
-      .then((r) => alert("You just add a new book"))
+      .then((r) =>
+            console.log(r),
+
+      )
       .catch((err) => console.error(err));
   };
 
